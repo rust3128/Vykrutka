@@ -3,8 +3,8 @@
 #include <QFile>
 #include <QDir>
 
-const QString GlobalSettings::CONFIG_FILE_NAME = "MPosGear.ini";    //Файл настроек
-const QString GlobalSettings::LOG_FILE = "MposGear.log";    //
+const QString GlobalSettings::CONFIG_FILE_NAME = "Vykrutka.ini";    //Файл настроек
+const QString GlobalSettings::LOG_FILE = "Vykrutka.log";    //
 
 GlobalSettings::GlobalSettings()
 {

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +11,7 @@ win32: RC_ICONS = $$PWD/Images/Vykrutka.ico
 
 
 SOURCES += \
+    DataBase/database.cpp \
     GlobalSettings/globalsettings.cpp \
     LoggingCategories/loggingcategories.cpp \
     OptionsDialog/CriptPass.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    DataBase/database.h \
     GlobalSettings/globalsettings.h \
     LoggingCategories/loggingcategories.h \
     OptionsDialog/CriptPass.h \
