@@ -1,1 +1,1 @@
-"# Vykrutka" 
+# Vykrutka
