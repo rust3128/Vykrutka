@@ -16,6 +16,7 @@ SOURCES += \
     LoggingCategories/loggingcategories.cpp \
     OptionsDialog/CriptPass.cpp \
     OptionsDialog/optionsdialog.cpp \
+    Users/users.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -25,6 +26,7 @@ HEADERS += \
     LoggingCategories/loggingcategories.h \
     OptionsDialog/CriptPass.h \
     OptionsDialog/optionsdialog.h \
+    Users/users.h \
     mainwindow.h
 
 FORMS += \
