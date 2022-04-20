@@ -3,6 +3,7 @@
 #include "GlobalSettings/globalsettings.h"
 #include "OptionsDialog/optionsdialog.h"
 #include "DataBase/database.h"
+#include "Users/users.h"
 
 #include <QApplication>
 #include <QLocale>

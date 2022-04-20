@@ -5,7 +5,7 @@
 
 class Users
 {
-    Q_OBJECT
+//    Q_OBJECT
 public:
     Users(QString systemuser);
     int getUserID() const;

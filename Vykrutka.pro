@@ -34,7 +34,9 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    Vykrutka_uk_UA.ts
+    Vykrutka_RU_en.ts
+TRANSLATIONS += \
+    Vykrutka_RU_ua.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -45,3 +47,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES += \
+    Translations/Vykrutka_RU_en.ts \
+    Translations/Vykrutka_RU_ua.ts
