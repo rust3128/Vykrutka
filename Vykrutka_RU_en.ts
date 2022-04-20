@@ -77,4 +77,18 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>QApplication</name>
+    <message>
+        <location filename="main.cpp" line="74"/>
+        <source>Новый пользователь</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="75"/>
+        <source>Вы первый раз запустили программу. Необходимо заполнить ваши данные.
+Согласны?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

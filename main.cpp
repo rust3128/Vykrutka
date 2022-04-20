@@ -11,7 +11,8 @@
 #include <QFile>
 #include <QDateTime>
 #include <QMessageBox>
-
+#include <QSqlQuery>
+#include <QSqlError>
 
 // Умный указатель на файл логирования
 static QScopedPointer<QFile>   m_logFile;
@@ -32,14 +33,6 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(messageHandler);
 
 
-    //Загрузка локализации
-    QTranslator *qt_translator = new QTranslator();
-    if(qt_translator->load(":/Translations/qtbase_ru.qm"))
-        a.installTranslator(qt_translator);
-    else
-        qWarning(logWarning()) << "Ну удалось загрузить языковый файл";
-
-
     // Загрузка файла настроек
     QFile configFile;
     configFile.setFileName(GlobalSettings::CONFIG_FILE_NAME);
@@ -58,6 +51,57 @@ int main(int argc, char *argv[])
             qCritical(logCritical()) << "Аварийное завершение работы.";
             return 1;
         }
+
+    //Опредкляем пользователя
+    QString qUsername;
+#if defined(Q_OS_WIN)
+    qUsername=QString::fromLocal8Bit (qgetenv ("USERNAME").constData ()).toUtf8 ();
+#elif defined(Q_OS_UNIX)
+    qUsername=qgetenv("USER").constData ();
+#endif
+
+    QSqlQuery q;
+    q.prepare("EXECUTE PROCEDURE get_user_id(:username)");
+    q.bindValue(":username", qUsername);
+    if(!q.exec()){
+        qCritical(logCritical()) << q.lastError().text();
+        return 1;
+    }
+    q.next();
+    if(q.value(1).toBool()){
+        //Новый пользователь
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(nullptr, QApplication::tr("Новый пользователь"),
+                                        QApplication::tr("Вы первый раз запустили программу. Необходимо заполнить ваши данные.\nСогласны?"),
+                                        QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes){
+            //Диалог редактирования пользователя
+        }
+    }
+
+    Users *curUser = new Users(q.value(0).toInt());
+    //Загрузка локализации
+    int lang =1;
+    QTranslator *trans = new QTranslator();
+    QTranslator *guiTrans = new QTranslator();
+    switch (lang) {
+    case 1:
+        if(trans->load(":/Vykrutka_RU_ua.qm"))
+            a.installTranslator(trans);
+        if(trans->load(":/Translations/qtbase_uk.qm"))
+            a.installTranslator(guiTrans);
+        break;
+    case 2:
+        if(trans->load(":/Vykrutka_RU_en.qm"))
+            a.installTranslator(trans);
+        if(trans->load(":/Translations/qtbase_en.qm"))
+            a.installTranslator(guiTrans);
+        break;
+    default:
+        if(trans->load(":/Translations/qtbase_ru.qm"))
+            a.installTranslator(guiTrans);
+        break;
+    }
 
 
     MainWindow w;

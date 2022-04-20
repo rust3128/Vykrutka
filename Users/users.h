@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class Users
+class Users : public QObject
 {
-//    Q_OBJECT
+    Q_OBJECT
 public:
-    Users(QString systemuser);
+    Users(int ID, QObject *parent = nullptr);
     int getUserID() const;
 
     const QString &getUserLogin() const;
@@ -22,6 +22,8 @@ public:
 
     bool getIsActive() const;
 
+    const QString &getEmail() const;
+
 private:
     void getUserData();
 private:
@@ -30,6 +32,7 @@ private:
     QString userFIO;
     QString asterPhone;
     QString mobilePhone;
+    QString email;
     int langUI;
     bool isActive;
 };
