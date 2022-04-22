@@ -5,5 +5,6 @@
         <file>Translations/qtbase_en.qm</file>
         <file>Vykrutka_RU_en.qm</file>
         <file>Vykrutka_RU_ua.qm</file>
+        <file>Images/screwdriver48.png</file>
     </qresource>
 </RCC>

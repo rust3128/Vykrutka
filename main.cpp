@@ -4,6 +4,7 @@
 #include "OptionsDialog/optionsdialog.h"
 #include "DataBase/database.h"
 #include "Users/users.h"
+#include "Users/userdatadialog.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -68,7 +69,11 @@ int main(int argc, char *argv[])
         return 1;
     }
     q.next();
-    if(q.value(1).toBool()){
+    bool isNew = q.value(1).toBool();
+    int userID = q.value(0).toInt();
+    q.exec("commit work");
+
+    if(isNew){
         //Новый пользователь
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(nullptr, QApplication::tr("Новый пользователь"),
@@ -76,35 +81,38 @@ int main(int argc, char *argv[])
                                         QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes){
             //Диалог редактирования пользователя
+            UserDataDialog *usData = new UserDataDialog(userID);
+            usData->exec();
         }
     }
 
-    Users *curUser = new Users(q.value(0).toInt());
+    Users *curUser = new Users(userID);
     //Загрузка локализации
-    int lang =1;
+    int lang = curUser->getLangUI();
+    qInfo(logInfo()) << "LangID" << lang;
     QTranslator *trans = new QTranslator();
     QTranslator *guiTrans = new QTranslator();
     switch (lang) {
     case 1:
         if(trans->load(":/Vykrutka_RU_ua.qm"))
             a.installTranslator(trans);
-        if(trans->load(":/Translations/qtbase_uk.qm"))
+        if(guiTrans->load(":/Translations/qtbase_uk.qm"))
             a.installTranslator(guiTrans);
         break;
     case 2:
         if(trans->load(":/Vykrutka_RU_en.qm"))
             a.installTranslator(trans);
-        if(trans->load(":/Translations/qtbase_en.qm"))
+        if(guiTrans->load(":/Translations/qtbase_en.qm"))
             a.installTranslator(guiTrans);
         break;
     default:
-        if(trans->load(":/Translations/qtbase_ru.qm"))
+        if(guiTrans->load(":/Translations/qtbase_ru.qm"))
             a.installTranslator(guiTrans);
         break;
     }
 
-
-    MainWindow w;
+    q.finish();
+    MainWindow w = MainWindow(curUser);
     w.show();
     qInfo(logInfo()) << "Started...";
     return a.exec();

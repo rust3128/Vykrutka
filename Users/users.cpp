@@ -48,8 +48,8 @@ bool Users::getIsActive() const
 void Users::getUserData()
 {
     QSqlQuery q;
-    q.prepare("select u.user_login, u.user_fio, u.aster_phone, u.phone, u.email, u.uilang, u.isactibe from users u "
-              "where u.user_id =:uID");
+
+    q.prepare("select u.user_login, u.user_fio, u.aster_phone, u.phone, u.email, u.ui_lang, u.isactibe from users u where u.user_id =:uID");
     q.bindValue(":uID", userID);
     if(!q.exec()){
         qCritical(logCritical()) << "Unable to complete request" << q.lastError().text();
@@ -63,7 +63,6 @@ void Users::getUserData()
     email = q.value(4).toString();
     langUI = q.value(5).toInt();
     isActive = q.value(6).toBool();
-    q.finish();
 
 }
 
