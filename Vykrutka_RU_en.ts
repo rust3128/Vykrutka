@@ -2,11 +2,76 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US" sourcelanguage="ru_UA">
 <context>
+    <name>EditNetworkAzsDialog</name>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="20"/>
+        <source>Наименование:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="30"/>
+        <source>Подключение к АЗС с Termadm</source>
+        <translation>Connection to petrol stations with Termadm</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="37"/>
+        <source>Сеть в работе</source>
+        <translation>Network in action</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="44"/>
+        <source>Логотип</source>
+        <translation>Logo</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="50"/>
+        <source>Логотип не загружен</source>
+        <translation>Logo not loaded</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="60"/>
+        <source>Загрузить логотип</source>
+        <translation>Download logo</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.ui" line="63"/>
+        <source>...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.cpp" line="23"/>
+        <source>Открыть логотип</source>
+        <translation>Open logo</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.cpp" line="23"/>
+        <source>Изображения (*.png *.jpeg *.jpg);;Все файлы (*.*)</source>
+        <translation>Images (*.png *.jpeg *.jpg);;All files (*.*)</translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.cpp" line="27"/>
+        <source>Предупреждение</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="editnetworkazsdialog.cpp" line="27"/>
+        <source>Внимание</source>
+        <comment>Размер логотипа слишком большой. Выберите другой файл.</comment>
+        <translatorcomment>The logo size is too large. Choose another file.</translatorcomment>
+        <translation>Attention</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>Викрутка</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="28"/>
@@ -14,13 +79,61 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="37"/>
+        <location filename="mainwindow.ui" line="32"/>
+        <source>Клиенты</source>
+        <translation>Clients</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="44"/>
         <source>Пользователь</source>
         <translation>User</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="49"/>
+        <source>Сети АЗС</source>
+        <translation>Filling station networks</translation>
+    </message>
+    <message>
         <source>Отвертка</source>
         <translation type="obsolete">Screwdriver</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="29"/>
+        <source>Пользователь: </source>
+        <translation>User: </translation>
+    </message>
+</context>
+<context>
+    <name>NetworkAzsDialog</name>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="14"/>
+        <source>Сети АЗС</source>
+        <translation>Filling station networks</translation>
+    </message>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="23"/>
+        <source>Список сереверов</source>
+        <translation>Server List</translation>
+    </message>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="37"/>
+        <source>Добавить</source>
+        <translation>Add</translation>
+    </message>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="61"/>
+        <source>Закрыть</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="104"/>
+        <source>Список сетей АЗС</source>
+        <translation>List of gas station chains</translation>
+    </message>
+    <message>
+        <location filename="NetworkAzs/networkazsdialog.ui" line="113"/>
+        <source>Отображать список серверов</source>
+        <translation>Display a list of servers</translation>
     </message>
 </context>
 <context>

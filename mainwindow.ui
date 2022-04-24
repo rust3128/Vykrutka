@@ -27,6 +27,13 @@
     <property name="title">
      <string>Настройка</string>
     </property>
+    <widget class="QMenu" name="menuClients">
+     <property name="title">
+      <string>Клиенты</string>
+     </property>
+     <addaction name="actionNetworkAzs"/>
+    </widget>
+    <addaction name="menuClients"/>
     <addaction name="actionUser"/>
    </widget>
    <addaction name="menu"/>
@@ -35,6 +42,11 @@
   <action name="actionUser">
    <property name="text">
     <string>Пользователь</string>
+   </property>
+  </action>
+  <action name="actionNetworkAzs">
+   <property name="text">
+    <string>Сети АЗС</string>
    </property>
   </action>
  </widget>

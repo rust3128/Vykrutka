@@ -24,6 +24,8 @@ public:
 
     const QString &getEmail() const;
 
+    const QString &getLangName() const;
+
 private:
     void getUserData();
 private:
@@ -35,6 +37,7 @@ private:
     QString email;
     int langUI;
     bool isActive;
+    QString langName;
 };
 
 #endif // USERS_H

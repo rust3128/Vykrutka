@@ -64,6 +64,21 @@ void Users::getUserData()
     langUI = q.value(5).toInt();
     isActive = q.value(6).toBool();
 
+    q.finish();
+    q.prepare("select l.lang_name from uilang l where l.lang_id = :langID");
+    q.bindValue(":langID",langUI);
+    if(!q.exec()){
+        qCritical(logCritical()) << "Unable to complete request" << q.lastError().text();
+    }
+    q.next();
+    langName = q.value(0).toString();
+    q.finish();
+
+}
+
+const QString &Users::getLangName() const
+{
+    return langName;
 }
 
 const QString &Users::getEmail() const

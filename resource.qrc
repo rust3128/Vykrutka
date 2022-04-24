@@ -6,5 +6,8 @@
         <file>Vykrutka_RU_en.qm</file>
         <file>Vykrutka_RU_ua.qm</file>
         <file>Images/screwdriver48.png</file>
+        <file>Images/add_48_icon.png</file>
+        <file>Images/cancel_48_icon.png</file>
+        <file>Images/folder_48_icon.png</file>
     </qresource>
 </RCC>

@@ -20,6 +20,8 @@ public:
 private slots:
     void on_actionUser_triggered();
 
+    void on_actionNetworkAzs_triggered();
+
 private:
     void createUI();
 private:
