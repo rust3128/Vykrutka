@@ -14,9 +14,13 @@ SOURCES += \
     DataBase/database.cpp \
     GlobalSettings/globalsettings.cpp \
     LoggingCategories/loggingcategories.cpp \
+    NetworkAzs/centraldb.cpp \
     NetworkAzs/editnetworkazsdialog.cpp \
+    NetworkAzs/logodelegate.cpp \
+    NetworkAzs/modelnetworkazs.cpp \
     NetworkAzs/networkazsdata.cpp \
     NetworkAzs/networkazsdialog.cpp \
+    NetworkAzs/templatehostname.cpp \
     OptionsDialog/CriptPass.cpp \
     OptionsDialog/optionsdialog.cpp \
     Users/userdatadialog.cpp \
@@ -28,9 +32,13 @@ HEADERS += \
     DataBase/database.h \
     GlobalSettings/globalsettings.h \
     LoggingCategories/loggingcategories.h \
+    NetworkAzs/centraldb.h \
     NetworkAzs/editnetworkazsdialog.h \
+    NetworkAzs/logodelegate.h \
+    NetworkAzs/modelnetworkazs.h \
     NetworkAzs/networkazsdata.h \
     NetworkAzs/networkazsdialog.h \
+    NetworkAzs/templatehostname.h \
     OptionsDialog/CriptPass.h \
     OptionsDialog/optionsdialog.h \
     Users/userdatadialog.h \

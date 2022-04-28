@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,1,0">
    <item row="2" column="0">
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QTableView" name="tableViewNetworks"/>
    </item>
    <item row="3" column="0">
     <widget class="QGroupBox" name="groupBoxServers">

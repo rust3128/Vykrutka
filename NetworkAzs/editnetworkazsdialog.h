@@ -2,6 +2,8 @@
 #define EDITNETWORKAZSDIALOG_H
 
 #include "NetworkAzs/networkazsdata.h"
+#include "NetworkAzs/centraldb.h"
+#include "NetworkAzs/templatehostname.h"
 
 #include <QDialog>
 
@@ -20,6 +22,28 @@ public:
 
 private slots:
     void on_toolButton_clicked();
+    void on_buttonBox_accepted();
+
+    void on_lineEditDBCenterServer_textEdited(const QString &arg1);
+
+    void on_lineEditDBCenterPort_textEdited(const QString &arg1);
+
+    void on_lineEditDBCenterFileDB_textEdited(const QString &arg1);
+
+    void on_lineEditDBCenterUser_textEdited(const QString &arg1);
+
+    void on_lineEditDBCenterPass_textEdited(const QString &arg1);
+
+    void on_buttonBox_rejected();
+
+    void on_lineEditName_textEdited(const QString &arg1);
+
+    void on_checkBoxIsActive_clicked();
+
+    void on_checkBoxConnectFromTerm_clicked();
+
+    void on_radioButtonUseTable_toggled(bool checked);
+
 private:
     void createUI();
 private:
@@ -27,6 +51,8 @@ private:
     QByteArray inByteArray;
     int networkID;
     NetworkAzsData *currentNetwork;
+    CentralDB *centralDB;
+    TemplateHostname *tempHost;
 };
 
 #endif // EDITNETWORKAZSDIALOG_H
