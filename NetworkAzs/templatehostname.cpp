@@ -1,10 +1,62 @@
 #include "templatehostname.h"
+#include "LoggingCategories/loggingcategories.h"
+
+#include <QSqlQuery>
+#include <QSqlError>
 
 TemplateHostname::TemplateHostname(uint ID, QObject *parent)
     : QObject{parent},
       networkID(ID)
 {
+    readFromDB();
+}
 
+void TemplateHostname::readFromDB()
+{
+    QSqlQuery q;
+    q.prepare("SELECT t.max_posid, t.single_vnc_port, t.vnc_port, t.prefix, t.prefix_chage, t.use_terminal_id, t.sufics_change, t.sufix from template_vnc t where t.network_id = :ID");
+    q.bindValue(":ID",networkID);
+    if(!q.exec()){
+        qCritical(logCritical()) << "Не возможно получить данные для шаблона" << q.lastError().text();
+        initData();
+        return;
+    }
+    int numberOfRows = 0;
+    if(q.last())
+    {
+        numberOfRows =  q.at() + 1;
+        q.first();
+        q.previous();
+    }
+    if(numberOfRows == 1){
+        q.next();
+        maxPOSID = q.value(0).toUInt();
+        singleVNCPort = q.value(1).toBool();
+        VNCPort = q.value(2).toUInt();
+        prefix = q.value(3).toString();
+        prefixChange = q.value(4).toChar();
+        useTermID = q.value(5).toBool();
+        sufixChange = q.value(6).toChar();
+        sufix = q.value(7).toString();
+        isChange = false;
+    } else {
+        initData();
+    }
+    q.finish();
+    q.clear();
+}
+
+void TemplateHostname::initData()
+{
+    maxPOSID =4;
+    singleVNCPort = true;
+    VNCPort = 5900;
+    prefix.clear();
+    prefixChange = QChar();
+    useTermID = true;
+    sufixChange = QChar();
+    sufix.clear();
+    isChange =false;
 }
 
 uint TemplateHostname::getNetworkID() const
@@ -15,6 +67,7 @@ uint TemplateHostname::getNetworkID() const
 void TemplateHostname::setNetworkID(uint newNetworkID)
 {
     networkID = newNetworkID;
+    isChange = true;
 }
 
 uint TemplateHostname::getMaxPOSID() const
@@ -25,6 +78,7 @@ uint TemplateHostname::getMaxPOSID() const
 void TemplateHostname::setMaxPOSID(uint newMaxPOSID)
 {
     maxPOSID = newMaxPOSID;
+    isChange = true;
 }
 
 bool TemplateHostname::getSingleVNCPort() const
@@ -35,6 +89,7 @@ bool TemplateHostname::getSingleVNCPort() const
 void TemplateHostname::setSingleVNCPort(bool newSingleVNCPort)
 {
     singleVNCPort = newSingleVNCPort;
+    isChange = true;
 }
 
 uint TemplateHostname::getVNCPort() const
@@ -45,6 +100,7 @@ uint TemplateHostname::getVNCPort() const
 void TemplateHostname::setVNCPort(uint newVNCPort)
 {
     VNCPort = newVNCPort;
+    isChange = true;
 }
 
 const QString &TemplateHostname::getPrefix() const
@@ -55,6 +111,7 @@ const QString &TemplateHostname::getPrefix() const
 void TemplateHostname::setPrefix(const QString &newPrefix)
 {
     prefix = newPrefix;
+    isChange = true;
 }
 
 const QChar &TemplateHostname::getPrefixChange() const
@@ -65,6 +122,7 @@ const QChar &TemplateHostname::getPrefixChange() const
 void TemplateHostname::setPrefixChange(const QChar &newPrefixChange)
 {
     prefixChange = newPrefixChange;
+    isChange = true;
 }
 
 bool TemplateHostname::getUseTermID() const
@@ -75,6 +133,7 @@ bool TemplateHostname::getUseTermID() const
 void TemplateHostname::setUseTermID(bool newUseTermID)
 {
     useTermID = newUseTermID;
+    isChange = true;
 }
 
 const QChar &TemplateHostname::getSufixChange() const
@@ -85,6 +144,7 @@ const QChar &TemplateHostname::getSufixChange() const
 void TemplateHostname::setSufixChange(const QChar &newSufixChange)
 {
     sufixChange = newSufixChange;
+    isChange = true;
 }
 
 const QString &TemplateHostname::getSufix() const
@@ -95,6 +155,7 @@ const QString &TemplateHostname::getSufix() const
 void TemplateHostname::setSufix(const QString &newSufix)
 {
     sufix = newSufix;
+    isChange = true;
 }
 
 bool TemplateHostname::getIsChange() const
@@ -106,3 +167,5 @@ void TemplateHostname::setIsChange(bool newIsChange)
 {
     isChange = newIsChange;
 }
+
+

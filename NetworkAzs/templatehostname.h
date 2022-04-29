@@ -40,6 +40,10 @@ public:
     void setIsChange(bool newIsChange);
 
 signals:
+
+private:
+    void readFromDB();
+    void initData();
 private:
     uint networkID;
     uint maxPOSID;

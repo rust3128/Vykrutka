@@ -79,6 +79,29 @@ void EditNetworkAzsDialog::createUI()
     default:
         break;
     }
+    ui->spinBoxMaxPOSID->setValue(tempHost->getMaxPOSID());
+    if(tempHost->getSingleVNCPort()){
+        ui->radioButtonSingleVNCPort->setChecked(true);
+    } else {
+        ui->radioButtonRangeVNCPorts->setChecked(true);
+    }
+    ui->spinBoxVNCPort->setValue(tempHost->getVNCPort());
+    if(tempHost->getPrefix().isEmpty()){
+        ui->checkBoxPrefix->setChecked(false);
+        ui->lineEditPrefix->hide();
+    } else {
+        ui->lineEditPrefix->show();
+        ui->lineEditPrefix->setText(tempHost->getPrefix());
+        ui->checkBoxPrefix->setChecked(true);
+    }
+    if(tempHost->getPrefixChange().isNull()){
+        ui->checkBoxCnangePrefix->setChecked(false);
+        ui->lineEditCnangePrefix->hide();
+    } else {
+        ui->checkBoxCnangePrefix->setChecked(true);
+        ui->lineEditCnangePrefix->show();
+        ui->lineEditCnangePrefix->setText(tempHost->getPrefixChange());
+    }
 }
 
 
@@ -167,5 +190,34 @@ void EditNetworkAzsDialog::on_radioButtonUseTable_toggled(bool checked)
         ui->groupBoxTemplateGen->show();
         currentNetwork->setHostnameTypeGen(2);
     }
+}
+
+void EditNetworkAzsDialog::on_checkBoxPrefix_toggled(bool checked)
+{
+    ui->lineEditPrefix->setVisible(checked);
+}
+
+
+void EditNetworkAzsDialog::on_spinBoxMaxPOSID_valueChanged(int arg1)
+{
+    tempHost->setMaxPOSID(arg1);
+}
+
+
+void EditNetworkAzsDialog::on_radioButtonSingleVNCPort_toggled(bool checked)
+{
+    tempHost->setSingleVNCPort(checked);
+}
+
+
+void EditNetworkAzsDialog::on_spinBoxVNCPort_valueChanged(int arg1)
+{
+    tempHost->setVNCPort(arg1);
+}
+
+
+void EditNetworkAzsDialog::on_checkBoxCnangePrefix_toggled(bool checked)
+{
+    ui->lineEditCnangePrefix->setVisible(checked);
 }
 

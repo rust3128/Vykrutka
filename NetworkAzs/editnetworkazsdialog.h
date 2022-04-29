@@ -44,6 +44,17 @@ private slots:
 
     void on_radioButtonUseTable_toggled(bool checked);
 
+
+    void on_checkBoxPrefix_toggled(bool checked);
+
+    void on_spinBoxMaxPOSID_valueChanged(int arg1);
+
+    void on_radioButtonSingleVNCPort_toggled(bool checked);
+
+    void on_spinBoxVNCPort_valueChanged(int arg1);
+
+    void on_checkBoxCnangePrefix_toggled(bool checked);
+
 private:
     void createUI();
 private:

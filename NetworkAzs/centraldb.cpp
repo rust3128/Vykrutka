@@ -19,6 +19,7 @@ void CentralDB::readFromDB()
     if(!q.exec()){
         qCritical(logCritical()) << "Не возможно получить данные о цетральной базе данных." << q.lastError().text();
         initData();
+        return;
     }
     int numberOfRows = 0;
     if(q.last())
