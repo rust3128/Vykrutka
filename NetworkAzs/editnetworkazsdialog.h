@@ -55,6 +55,16 @@ private slots:
 
     void on_checkBoxCnangePrefix_toggled(bool checked);
 
+    void on_radioButtonRangeVNCPorts_toggled(bool checked);
+
+    void on_radioButtonUseTermID_toggled(bool checked);
+
+    void on_radioButtonUseOwnerID_toggled(bool checked);
+
+    void on_checkBoxChangeSufix_toggled(bool checked);
+
+    void on_checkBoxSufix_toggled(bool checked);
+
 private:
     void createUI();
 private:

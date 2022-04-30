@@ -85,6 +85,7 @@ void EditNetworkAzsDialog::createUI()
     } else {
         ui->radioButtonRangeVNCPorts->setChecked(true);
     }
+
     ui->spinBoxVNCPort->setValue(tempHost->getVNCPort());
     if(tempHost->getPrefix().isEmpty()){
         ui->checkBoxPrefix->setChecked(false);
@@ -102,6 +103,29 @@ void EditNetworkAzsDialog::createUI()
         ui->lineEditCnangePrefix->show();
         ui->lineEditCnangePrefix->setText(tempHost->getPrefixChange());
     }
+    if(tempHost->getUseTermID()){
+        ui->radioButtonUseTermID->setChecked(true);
+    } else {
+        ui->radioButtonUseOwnerID->setChecked(true);
+    }
+    if(tempHost->getSufixChange().isNull()){
+        ui->checkBoxChangeSufix->setChecked(false);
+        ui->lineEditChangeSufix->hide();
+    } else {
+        ui->checkBoxChangeSufix->setChecked(true);
+        ui->lineEditChangeSufix->show();
+        ui->lineEditChangeSufix->setText(tempHost->getSufixChange());
+    }
+    if(tempHost->getSufix().isEmpty()){
+        ui->checkBoxSufix->setChecked(false);
+        ui->lineEditSufix->hide();
+    } else {
+        ui->lineEditSufix->setText(tempHost->getSufix());
+        ui->lineEditSufix->show();
+        ui->checkBoxSufix->setChecked(true);
+    }
+
+
 }
 
 
@@ -219,5 +243,35 @@ void EditNetworkAzsDialog::on_spinBoxVNCPort_valueChanged(int arg1)
 void EditNetworkAzsDialog::on_checkBoxCnangePrefix_toggled(bool checked)
 {
     ui->lineEditCnangePrefix->setVisible(checked);
+}
+
+
+void EditNetworkAzsDialog::on_radioButtonRangeVNCPorts_toggled(bool checked)
+{
+    tempHost->setSingleVNCPort(!checked);
+}
+
+
+void EditNetworkAzsDialog::on_radioButtonUseTermID_toggled(bool checked)
+{
+    tempHost->setUseTermID(checked);
+}
+
+
+void EditNetworkAzsDialog::on_radioButtonUseOwnerID_toggled(bool checked)
+{
+    tempHost->setUseTermID(!checked);
+}
+
+
+void EditNetworkAzsDialog::on_checkBoxChangeSufix_toggled(bool checked)
+{
+    ui->lineEditChangeSufix->setVisible(checked);
+}
+
+
+void EditNetworkAzsDialog::on_checkBoxSufix_toggled(bool checked)
+{
+    ui->lineEditSufix->setVisible(checked);
 }
 
