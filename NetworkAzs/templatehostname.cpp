@@ -59,6 +59,28 @@ void TemplateHostname::initData()
     isChange =false;
 }
 
+void TemplateHostname::saveToDB()
+{
+    QSqlQuery q;
+    q.prepare("UPDATE OR INSERT INTO TEMPLATE_VNC (NETWORK_ID, MAX_POSID, SINGLE_VNC_PORT, VNC_PORT, PREFIX, PREFIX_CHAGE, USE_TERMINAL_ID, SUFICS_CHANGE, SUFIX) "
+              "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) "
+              "MATCHING (NETWORK_ID)");
+    q.bindValue(0, networkID);
+    q.bindValue(1, maxPOSID);
+    q.bindValue(2, singleVNCPort);
+    q.bindValue(3, VNCPort);
+    q.bindValue(4, prefix);
+    q.bindValue(5, prefixChange);
+    q.bindValue(6, useTermID);
+    q.bindValue(7, sufixChange);
+    q.bindValue(8, sufix);
+    if(!q.exec()){
+        qCritical(logCritical()) << "Не удалось обновить параметры шаблона подключения" << q.lastError().text();
+    } else {
+        qInfo(logInfo()) << "Параметры параметры шаблона подключения успешно обновлены.";
+    }
+}
+
 uint TemplateHostname::getNetworkID() const
 {
     return networkID;

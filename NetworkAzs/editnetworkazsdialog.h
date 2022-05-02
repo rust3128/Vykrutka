@@ -65,6 +65,14 @@ private slots:
 
     void on_checkBoxSufix_toggled(bool checked);
 
+    void on_lineEditPrefix_textEdited(const QString &arg1);
+
+    void on_lineEditCnangePrefix_textEdited(const QString &arg1);
+
+    void on_lineEditChangeSufix_textEdited(const QString &arg1);
+
+    void on_lineEditSufix_textEdited(const QString &arg1);
+
 private:
     void createUI();
 private:

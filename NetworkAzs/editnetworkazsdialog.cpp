@@ -131,7 +131,7 @@ void EditNetworkAzsDialog::createUI()
 
 void EditNetworkAzsDialog::on_buttonBox_accepted()
 {
-    if(currentNetwork->getIsChanges() || centralDB->getIsChanged()){
+    if(currentNetwork->getIsChanges() || centralDB->getIsChanged() || tempHost->getIsChange()) {
         //Были изменения в данных по сети АЗС
         int result = QMessageBox::question(this,tr("Внимание"),
                                            QString(tr("Информация о клиенте %1 была изменена.\nВы дейстиветльно хотите обновить информацию в базе данных?"))
@@ -142,6 +142,9 @@ void EditNetworkAzsDialog::on_buttonBox_accepted()
            }
            if(centralDB->getIsChanged()){
                 centralDB->updateDB();
+           }
+           if(tempHost->getIsChange()){
+               tempHost->saveToDB();
            }
         }
     }
@@ -273,5 +276,29 @@ void EditNetworkAzsDialog::on_checkBoxChangeSufix_toggled(bool checked)
 void EditNetworkAzsDialog::on_checkBoxSufix_toggled(bool checked)
 {
     ui->lineEditSufix->setVisible(checked);
+}
+
+
+void EditNetworkAzsDialog::on_lineEditPrefix_textEdited(const QString &arg1)
+{
+    tempHost->setPrefix(arg1);
+}
+
+
+void EditNetworkAzsDialog::on_lineEditCnangePrefix_textEdited(const QString &arg1)
+{
+    tempHost->setPrefixChange(arg1.at(0));
+}
+
+
+void EditNetworkAzsDialog::on_lineEditChangeSufix_textEdited(const QString &arg1)
+{
+    tempHost->setSufixChange(arg1.at(0));
+}
+
+
+void EditNetworkAzsDialog::on_lineEditSufix_textEdited(const QString &arg1)
+{
+    tempHost->setSufix(arg1);
 }
 

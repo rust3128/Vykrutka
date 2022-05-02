@@ -39,11 +39,13 @@ public:
     bool getIsChange() const;
     void setIsChange(bool newIsChange);
 
+    void saveToDB();
 signals:
 
 private:
     void readFromDB();
     void initData();
+
 private:
     uint networkID;
     uint maxPOSID;
