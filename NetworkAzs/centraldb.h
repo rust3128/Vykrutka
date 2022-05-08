@@ -2,6 +2,7 @@
 #define CENTRALDB_H
 
 #include <QObject>
+#include <QSqlDatabase>
 
 class CentralDB : public QObject
 {
@@ -21,11 +22,14 @@ public:
     void setServerUser(const QString &newServerUser);
     void setUserPass(const QString &newUserPass);
     void updateDB();
+    const QSqlDatabase &getDbCentr() const;
+    void createCentrDB();
 signals:
 
 private:
     void readFromDB();
     void initData();
+
 private:
     int networkID;
     QString serverName;
@@ -34,6 +38,8 @@ private:
     QString serverUser;
     QString userPass;
     bool isChanged;
+    QSqlDatabase dbCenter;
+
 
 };
 

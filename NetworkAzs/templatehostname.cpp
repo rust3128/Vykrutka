@@ -34,9 +34,9 @@ void TemplateHostname::readFromDB()
         singleVNCPort = q.value(1).toBool();
         VNCPort = q.value(2).toUInt();
         prefix = q.value(3).toString();
-        prefixChange = q.value(4).toChar();
+        prefixChange = q.value(4).toString().at(0);
         useTermID = q.value(5).toBool();
-        sufixChange = q.value(6).toChar();
+        sufixChange = q.value(6).toString().at(0);
         sufix = q.value(7).toString();
         isChange = false;
     } else {
@@ -59,6 +59,18 @@ void TemplateHostname::initData()
     isChange =false;
 }
 
+
+
+void TemplateHostname::setTerminalID(uint newTerminalID)
+{
+    terminalID = newTerminalID;
+}
+
+const QList<QStringList> &TemplateHostname::getConnectionList() const
+{
+    return connectionList;
+}
+
 void TemplateHostname::saveToDB()
 {
     QSqlQuery q;
@@ -78,7 +90,9 @@ void TemplateHostname::saveToDB()
         qCritical(logCritical()) << "Не удалось обновить параметры шаблона подключения" << q.lastError().text();
     } else {
         qInfo(logInfo()) << "Параметры параметры шаблона подключения успешно обновлены.";
+        isChange=false;
     }
+
 }
 
 uint TemplateHostname::getNetworkID() const

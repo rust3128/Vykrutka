@@ -53,6 +53,24 @@ void CentralDB::initData()
     isChanged = false;
 }
 
+void CentralDB::createCentrDB()
+{
+    dbCenter = QSqlDatabase::addDatabase("QIBASE","centr");
+    dbCenter.setHostName(serverName);
+    if(serverPort != 3050){
+        dbCenter.setPort(serverPort);
+    }
+    dbCenter.setDatabaseName(databaseFile);
+    dbCenter.setUserName(serverUser);
+    dbCenter.setPassword(userPass);
+
+}
+
+const QSqlDatabase &CentralDB::getDbCentr() const
+{
+    return dbCenter;
+}
+
 void CentralDB::updateDB()
 {
     QSqlQuery q;

@@ -40,14 +40,18 @@ public:
     void setIsChange(bool newIsChange);
 
     void saveToDB();
+    const QList<QStringList> &getConnectionList() const;
+
+    void setTerminalID(uint newTerminalID);
+
 signals:
 
 private:
     void readFromDB();
     void initData();
-
 private:
     uint networkID;
+    uint terminalID;
     uint maxPOSID;
     bool singleVNCPort;
     uint VNCPort;
@@ -57,6 +61,7 @@ private:
     QChar sufixChange;
     QString sufix;
     bool isChange;
+    QList<QStringList> connectionList;
 };
 
 #endif // TEMPLATEHOSTNAME_H

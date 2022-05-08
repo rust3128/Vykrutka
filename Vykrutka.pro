@@ -21,8 +21,10 @@ SOURCES += \
     NetworkAzs/networkazsdata.cpp \
     NetworkAzs/networkazsdialog.cpp \
     NetworkAzs/templatehostname.cpp \
+    NetworkAzs/testtemplatedialog.cpp \
     OptionsDialog/CriptPass.cpp \
     OptionsDialog/optionsdialog.cpp \
+    ServicedObjects/createconnectionlist.cpp \
     Users/userdatadialog.cpp \
     Users/users.cpp \
     main.cpp \
@@ -39,8 +41,10 @@ HEADERS += \
     NetworkAzs/networkazsdata.h \
     NetworkAzs/networkazsdialog.h \
     NetworkAzs/templatehostname.h \
+    NetworkAzs/testtemplatedialog.h \
     OptionsDialog/CriptPass.h \
     OptionsDialog/optionsdialog.h \
+    ServicedObjects/createconnectionlist.h \
     Users/userdatadialog.h \
     Users/users.h \
     mainwindow.h
@@ -48,6 +52,7 @@ HEADERS += \
 FORMS += \
     NetworkAzs/editnetworkazsdialog.ui \
     NetworkAzs/networkazsdialog.ui \
+    NetworkAzs/testtemplatedialog.ui \
     OptionsDialog/optionsdialog.ui \
     Users/userdatadialog.ui \
     mainwindow.ui

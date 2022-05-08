@@ -1,14 +1,16 @@
 #include "editnetworkazsdialog.h"
 #include "ui_editnetworkazsdialog.h"
 #include "LoggingCategories/loggingcategories.h"
-
+#include "NetworkAzs/testtemplatedialog.h"
 
 
 #include <QFileDialog>
 #include <QBuffer>
 #include <QMessageBox>
+#include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QInputDialog>
 
 EditNetworkAzsDialog::EditNetworkAzsDialog(int ID, QWidget *parent) :
     QDialog(parent),
@@ -222,6 +224,9 @@ void EditNetworkAzsDialog::on_radioButtonUseTable_toggled(bool checked)
 void EditNetworkAzsDialog::on_checkBoxPrefix_toggled(bool checked)
 {
     ui->lineEditPrefix->setVisible(checked);
+    if(!checked){
+        tempHost->setPrefix("");
+    }
 }
 
 
@@ -246,6 +251,9 @@ void EditNetworkAzsDialog::on_spinBoxVNCPort_valueChanged(int arg1)
 void EditNetworkAzsDialog::on_checkBoxCnangePrefix_toggled(bool checked)
 {
     ui->lineEditCnangePrefix->setVisible(checked);
+    if(!checked){
+        tempHost->setPrefixChange(QChar());
+    }
 }
 
 
@@ -270,12 +278,18 @@ void EditNetworkAzsDialog::on_radioButtonUseOwnerID_toggled(bool checked)
 void EditNetworkAzsDialog::on_checkBoxChangeSufix_toggled(bool checked)
 {
     ui->lineEditChangeSufix->setVisible(checked);
+    if(!checked){
+        tempHost->setSufixChange(QChar());
+    }
 }
 
 
 void EditNetworkAzsDialog::on_checkBoxSufix_toggled(bool checked)
 {
     ui->lineEditSufix->setVisible(checked);
+    if(!checked){
+        tempHost->setSufix("");
+    }
 }
 
 
@@ -300,5 +314,48 @@ void EditNetworkAzsDialog::on_lineEditChangeSufix_textEdited(const QString &arg1
 void EditNetworkAzsDialog::on_lineEditSufix_textEdited(const QString &arg1)
 {
     tempHost->setSufix(arg1);
+}
+
+
+void EditNetworkAzsDialog::on_pushButtonShowTemplate_clicked()
+{
+    tempHost->saveToDB();
+
+    bool ok;
+    int termID = QInputDialog::getInt(this, tr("Проврека шаблона"),
+                                 tr("Введите номер терминала для проверки шаблона"), 1001, 1001, 99999, 1, &ok);
+    if (ok){
+        TestTemplateDialog *testTempl = new TestTemplateDialog(termID, networkID, this);
+        testTempl->exec();
+    }
+
+
+}
+
+void EditNetworkAzsDialog::on_pushButtonDBCenterTest_clicked()
+{
+    if(centralDB->getIsChanged()){
+        int result = QMessageBox::question(this,tr("Внимание"),
+                                           QString(tr("Информация о клиенте %1 была изменена.\nВы дейстиветльно хотите обновить информацию в базе данных?"))
+                                           .arg(ui->lineEditName->text().trimmed()));
+        if(result == QMessageBox::Yes){
+            centralDB->updateDB();
+        }
+    }
+    centralDB->createCentrDB();
+    QSqlDatabase d = QSqlDatabase::database("centr");
+    QMessageBox msgBox;
+    msgBox.setWindowTitle(tr("Диагностика подключения"));
+    if(d.open()){
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText(tr("Успешное подключение к базе данных!"));
+        msgBox.setDetailedText(d.lastError().text());
+    } else {
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText(tr("Ошибка подключения к базе данных!"));
+        msgBox.setDetailedText(d.lastError().text());
+    }
+    msgBox.exec();
+
 }
 

@@ -73,6 +73,10 @@ private slots:
 
     void on_lineEditSufix_textEdited(const QString &arg1);
 
+    void on_pushButtonShowTemplate_clicked();
+
+    void on_pushButtonDBCenterTest_clicked();
+
 private:
     void createUI();
 private:
