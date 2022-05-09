@@ -17,6 +17,9 @@ class TestTemplateDialog : public QDialog
 public:
     explicit TestTemplateDialog(uint tID, uint netID, QWidget *parent = nullptr);
     ~TestTemplateDialog();
+private slots:
+    void slotVncConnect();
+    void on_buttonBox_rejected();
 
 private:
     void createUI();
@@ -24,7 +27,10 @@ private:
     Ui::TestTemplateDialog *ui;
     uint terminalID;
     uint networkID;
-    CreateConnectionList *connList;
+    CreateConnectionList *conn;
+
+    QList<QStringList> connList;
+
 };
 
 #endif // TESTTEMPLATEDIALOG_H

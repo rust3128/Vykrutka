@@ -26,6 +26,7 @@ void CreateConnectionList::createConnectionList()
 
     for(uint i=0; i<templHost->getMaxPOSID();++i){
         hostName.clear();
+        paramVNC.clear();
         if(templHost->getPrefix().size()>0){
             hostName += templHost->getPrefix();
         }

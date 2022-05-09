@@ -22,6 +22,7 @@ SOURCES += \
     NetworkAzs/networkazsdialog.cpp \
     NetworkAzs/templatehostname.cpp \
     NetworkAzs/testtemplatedialog.cpp \
+    NetworkAzs/vncbutton.cpp \
     OptionsDialog/CriptPass.cpp \
     OptionsDialog/optionsdialog.cpp \
     ServicedObjects/createconnectionlist.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     NetworkAzs/networkazsdialog.h \
     NetworkAzs/templatehostname.h \
     NetworkAzs/testtemplatedialog.h \
+    NetworkAzs/vncbutton.h \
     OptionsDialog/CriptPass.h \
     OptionsDialog/optionsdialog.h \
     ServicedObjects/createconnectionlist.h \
