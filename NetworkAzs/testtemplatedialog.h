@@ -3,8 +3,11 @@
 #include "NetworkAzs/templatehostname.h"
 #include "NetworkAzs/centraldb.h"
 #include "ServicedObjects/createconnectionlist.h"
+#include "NetworkAzs/vncbutton.h"
 
 #include <QDialog>
+#include <QAbstractButton>
+#include <QLabel>
 
 namespace Ui {
 class TestTemplateDialog;
@@ -20,7 +23,9 @@ public:
 private slots:
     void slotVncConnect();
     void on_buttonBox_rejected();
-
+    void slotStartTestVNC();
+    void slotFinishTestVNC();
+    void slotGetStatusVNC(bool status);
 private:
     void createUI();
 private:
@@ -28,8 +33,10 @@ private:
     uint terminalID;
     uint networkID;
     CreateConnectionList *conn;
-
     QList<QStringList> connList;
+    QLabel *labelStatus;
+    VncButton *vncButton;
+    bool statusVNC;
 
 };
 

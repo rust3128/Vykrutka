@@ -10,5 +10,8 @@
         <file>Images/cancel_48_icon.png</file>
         <file>Images/folder_48_icon.png</file>
         <file>Images/TightVNC_logo.png</file>
+        <file>Images/connect_creating_icon.png</file>
+        <file>Images/connect_established_icon.png</file>
+        <file>Images/connect_no_icon.png</file>
     </qresource>
 </RCC>

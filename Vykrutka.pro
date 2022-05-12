@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,6 +28,7 @@ SOURCES += \
     ServicedObjects/createconnectionlist.cpp \
     Users/userdatadialog.cpp \
     Users/users.cpp \
+    VncConnect/testvncconnect.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -49,6 +50,7 @@ HEADERS += \
     ServicedObjects/createconnectionlist.h \
     Users/userdatadialog.h \
     Users/users.h \
+    VncConnect/testvncconnect.h \
     mainwindow.h
 
 FORMS += \
