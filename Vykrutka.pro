@@ -26,6 +26,8 @@ SOURCES += \
     OptionsDialog/CriptPass.cpp \
     OptionsDialog/optionsdialog.cpp \
     ServicedObjects/createconnectionlist.cpp \
+    ServicedObjects/poslistwidget.cpp \
+    ServicedObjects/statuspos.cpp \
     Users/userdatadialog.cpp \
     Users/users.cpp \
     VncConnect/testvncconnect.cpp \
@@ -48,6 +50,8 @@ HEADERS += \
     OptionsDialog/CriptPass.h \
     OptionsDialog/optionsdialog.h \
     ServicedObjects/createconnectionlist.h \
+    ServicedObjects/poslistwidget.h \
+    ServicedObjects/statuspos.h \
     Users/userdatadialog.h \
     Users/users.h \
     VncConnect/testvncconnect.h \
@@ -58,6 +62,7 @@ FORMS += \
     NetworkAzs/networkazsdialog.ui \
     NetworkAzs/testtemplatedialog.ui \
     OptionsDialog/optionsdialog.ui \
+    ServicedObjects/poslistwidget.ui \
     Users/userdatadialog.ui \
     mainwindow.ui
 

@@ -4,12 +4,12 @@
 
 #include <QTcpSocket>
 
-TestVNCConnect::TestVNCConnect(QString _host, uint _port, QObject *parent)
+TestVNCConnect::TestVNCConnect(QString _host, uint _port,uint _pID, QObject *parent)
     : QObject{parent},
       hostName(_host),
       port(_port)
 {
-
+    statusConn.setPosID(_pID);
 }
 
 void TestVNCConnect::checkConnectionStatus()
@@ -18,10 +18,11 @@ void TestVNCConnect::checkConnectionStatus()
 
     tcpSocket->connectToHost(hostName,port);
     if(tcpSocket->waitForConnected(2000)){
-        statusConn = true;
+        statusConn.setConnected(true);
     } else {
-        statusConn = false;
+        statusConn.setConnected(false);
     }
     emit signalSendStatusConnect(statusConn);
     emit finish();
 }
+
