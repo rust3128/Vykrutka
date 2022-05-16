@@ -22,6 +22,12 @@
        <height>32</height>
       </size>
      </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
   </layout>

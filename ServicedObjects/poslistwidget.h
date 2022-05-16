@@ -30,7 +30,7 @@ private:
     StatusPos statusPos;
     CreateConnectionList *conn;
     QList<QStringList> connList;
-    const uint columnCount = 5;
+    uint columnCount;
 
 };
 

@@ -2,7 +2,7 @@
 
 StatusPos::StatusPos()
 {
-    PosID = 9999;
+
 }
 
 unsigned int StatusPos::getPosID() const

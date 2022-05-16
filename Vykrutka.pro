@@ -20,6 +20,8 @@ SOURCES += \
     NetworkAzs/modelnetworkazs.cpp \
     NetworkAzs/networkazsdata.cpp \
     NetworkAzs/networkazsdialog.cpp \
+    NetworkAzs/serverdata.cpp \
+    NetworkAzs/severslist.cpp \
     NetworkAzs/templatehostname.cpp \
     NetworkAzs/testtemplatedialog.cpp \
     NetworkAzs/vncbutton.cpp \
@@ -44,6 +46,8 @@ HEADERS += \
     NetworkAzs/modelnetworkazs.h \
     NetworkAzs/networkazsdata.h \
     NetworkAzs/networkazsdialog.h \
+    NetworkAzs/serverdata.h \
+    NetworkAzs/severslist.h \
     NetworkAzs/templatehostname.h \
     NetworkAzs/testtemplatedialog.h \
     NetworkAzs/vncbutton.h \

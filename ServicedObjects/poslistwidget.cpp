@@ -3,7 +3,7 @@
 #include "ui_poslistwidget.h"
 #include "LoggingCategories/loggingcategories.h"
 
-#include <QToolButton>
+#include <QPushButton>
 
 PosListWidget::PosListWidget(uint tID, uint netID, QWidget *parent) :
     QWidget(parent),
@@ -33,7 +33,9 @@ void PosListWidget::createUI()
     conn = new CreateConnectionList(networkID, terminalID, this);
     connList = conn->getConnList();
     const uint rowCount = connList.size();
-    ui->tableWidgetPosList->setColumnCount(columnCount);
+    QStringList headers = QStringList() << tr("PosID") << tr("Статус") << tr("Хост") << tr("Порт") << tr("Подключение");
+
+    ui->tableWidgetPosList->setColumnCount(headers.size());
     ui->tableWidgetPosList->setRowCount(rowCount);
     for(uint row=0;row<rowCount;++row){
         ui->tableWidgetPosList->setItem(row,0, new QTableWidgetItem(QString::number(row+1)));
@@ -42,7 +44,7 @@ void PosListWidget::createUI()
         ui->tableWidgetPosList->setItem(row,3, new QTableWidgetItem(connList.at(row).at(1)));
 
         QWidget* pWidget = new QWidget();
-        QToolButton* btn_VNC = new QToolButton();
+        QPushButton* btn_VNC = new QPushButton();
         btn_VNC->setIconSize(QSize(32,32));
         btn_VNC->setIcon(QIcon(":/Images/TightVNC_logo.png"));
         QHBoxLayout* pLayout = new QHBoxLayout(pWidget);
@@ -51,7 +53,7 @@ void PosListWidget::createUI()
         pLayout->setContentsMargins(0, 0, 0, 0);
         pWidget->setLayout(pLayout);
         ui->tableWidgetPosList->setCellWidget(row, 4, pWidget);
-        connect(btn_VNC,&QToolButton::clicked,this,&PosListWidget::slotPbVNCClicked);
+        connect(btn_VNC,&QPushButton::clicked,this,&PosListWidget::slotPbVNCClicked);
 
         TestVNCConnect *testVNC = new TestVNCConnect(connList.at(row).at(0), connList.at(row).at(1).toUInt(),row);
         QThread *thread = new QThread();
@@ -67,6 +69,7 @@ void PosListWidget::createUI()
 
         thread->start();
     }
+    ui->tableWidgetPosList->setHorizontalHeaderLabels(headers);
     ui->tableWidgetPosList->resizeColumnsToContents();
 }
 
@@ -74,7 +77,8 @@ void PosListWidget::createUI()
 
 void PosListWidget::slotStartTestVNC()
 {
-
+    statusPos.setPosID(9999);
+    statusPos.setConnected(false);
 }
 
 void PosListWidget::slotFinishTestVNC()
